@@ -13,4 +13,3 @@ var today = new Date();
 
 
 // write to the document 
-document.write(greetings);

@@ -23,22 +23,33 @@
             <p>
                 Please display a hello world message in JavaScript. 
                 <script>
-                    document.title = "JavaScript Basic -- In class practice -- Yilian Zhang";
+                    document.title = "JavaScript Basic -- In class practice -- Caleb Wheeler";
                     // use document.write to display a message
-                    
-                    // use console.log to display a message   
+                    document.write("Hello World");
+                    // use console.log to display a message  
+                    console.log("Print for debugging") 
                   
                     
                 </script>
             </p>
             <p> Please import external file hello.js here. 
-                
+                <script src="js/hello.js"></script>
             </p>
         </div>
 
         <div class="practice">
             <h1> Variable and Arithemetic Operation</h1>
             <p> Practice on variables </p>
+            <script>
+                var a=3;
+                var b=5;
+                var c=a+b;
+                var d=a%c;
+                var e=a*a;
+                document.write("<p>" + c + "</p>");
+                document.write("<p>" + d + "</p>");
+                document.write("<p>"+e+"</p>");
+            </script>
 
 
         </div>
@@ -46,8 +57,17 @@
         <div class="practice">
             <h1> JavaScript Escape Sequence</h1>
             <p> Write an image to the page </p>
-
+            <script>
+                document.write("<img src=\"img/die1.png\" alt=\"die1\"/>")
+            </script>
             <p> Write a table to the page </p>
+            <script>
+                document.write("<table border='1'>");
+                document.write("<tr><th> Name </th> <th> Age </th> </tr>");
+                document.write("<tr><td> John </td> <td> 25 </td> </tr>");
+                document.write("<tr><td> Mary </td> <td> 30 </td> </tr>");
+                document.write("</table>");
+            </script>
 
         </div>
 
@@ -55,7 +75,11 @@
             <h1>Window and Document Object </h1>
             <p> Try alert, open, location, url </p>
             <script>
-
+                document.write("This document was last modified on " + document.lastModified);
+                //window.alert("This is an example of window alert");
+                //window.open("https://www.facebook.com");
+                //window.location.assign("https://www.facebook.com");
+                //window.location.href="https://www.facebook.com";
             </script>
 
         </div>
@@ -74,8 +98,14 @@
             <p id="p1"> Paragraph Number One </p>
             <p id="p2"> Paragraph Number two </p>
             <p id="p3"> Paragraph Number three </p>
-            <p>Please write JavaScript code to change the content of each paragraph.​
-            <p>
+            <p>Please write JavaScript code to change the content of each paragraph.​</p>
+            <script>
+                const pE = document.getElementById("p1");
+                pE.innerHTML ="\<bold>This paragraph has been set to bold\</bold>";
+                console.log(pE);
+                document.getElementById("p2").innerHTML = "\<i>This paragraph has been set to italic\</i>";
+                document.getElementById("p3").innerHTML = "\<u>This paragraph has been set to underline\</u>";
+            </script>
 
 
         </div>
@@ -85,7 +115,8 @@
             <p> Please enter your numbers </p>
             <script>
                 function calculate() {
-
+                    const fE=document.getElementsByName("addnum1")[0];
+                    console.log(fE);
 
                 }
             </script>
