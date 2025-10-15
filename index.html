@@ -14,25 +14,25 @@
 <body>
     <div class="wrapper">
         <div class="panelLeft">
-            
+
         </div>
 
         <div class="practice">
             <h1>Hello world in JavaScript
             </h1>
             <p>
-                Please display a hello world message in JavaScript. 
+                Please display a hello world message in JavaScript.
                 <script>
                     document.title = "JavaScript Basic -- In class practice -- Caleb Wheeler";
                     // use document.write to display a message
                     document.write("Hello World");
                     // use console.log to display a message  
-                    console.log("Print for debugging") 
-                  
-                    
+                    console.log("Print for debugging")
+
+
                 </script>
             </p>
-            <p> Please import external file hello.js here. 
+            <p> Please import external file hello.js here.
                 <script src="js/hello.js"></script>
             </p>
         </div>
@@ -41,14 +41,14 @@
             <h1> Variable and Arithemetic Operation</h1>
             <p> Practice on variables </p>
             <script>
-                var a=3;
-                var b=5;
-                var c=a+b;
-                var d=a%c;
-                var e=a*a;
+                var a = 3;
+                var b = 5;
+                var c = a + b;
+                var d = a % c;
+                var e = a * a;
                 document.write("<p>" + c + "</p>");
                 document.write("<p>" + d + "</p>");
-                document.write("<p>"+e+"</p>");
+                document.write("<p>" + e + "</p>");
             </script>
 
 
@@ -101,7 +101,7 @@
             <p>Please write JavaScript code to change the content of each paragraph.​</p>
             <script>
                 const pE = document.getElementById("p1");
-                pE.innerHTML ="\<bold>This paragraph has been set to bold\</bold>";
+                pE.innerHTML = "\<b>This paragraph has been set to bold\</b>";
                 console.log(pE);
                 document.getElementById("p2").innerHTML = "\<i>This paragraph has been set to italic\</i>";
                 document.getElementById("p3").innerHTML = "\<u>This paragraph has been set to underline\</u>";
@@ -115,12 +115,15 @@
             <p> Please enter your numbers </p>
             <script>
                 function calculate() {
-                    const fE=document.getElementsByName("addnum1")[0];
-                    console.log(fE);
-
+                    const fE = document.getElementsByName("addnum1")[0];
+                    var a = parseInt(fE.value);
+                    const sE = document.getElementsByName("addnum2")[0];
+                    var b = parseInt(sE.value);
+                    var c = a + b;
+                    document.getElementById("result").innerHTML = c;
                 }
             </script>
-            <p> <input type="text" name="addnum1" /> + <input type="text" name="num2">
+            <p> <input type="text" name="addnum1" /> + <input type="text" name="addnum2">
                 <input type="button" value="=" onclick="calculate();">
                 <label id="result"> ? </label>
             </p>
@@ -139,12 +142,30 @@
                 <p id="message">
 
                 </p>
+                <script>
+                    /* Event Handler */
+                    function message() {
+                        alert("That is your name");
+                    }
 
+                    /*Resister the event */
+                    const nameE = document.getElementById("cName");
+                    nameE.addEventListener('blur', message, false);
+                    console.log(nameE);
+                </script>
                 <p>
                     <label> Email:
                         <input type="text" id="cEmail">
                     </label>
                 </p>
+                <script>
+                    function message2() {
+                        alert("That is your email");
+                    }
+                    const emailE = document.getElementById("cEmail");
+                    emailE.addEventListener('blur', message2, false);
+                    console.log(emailE);
+                </script>
             </form>
 
         </div>
@@ -154,6 +175,15 @@
             Calculating Square:
             <input type="text" id="squarenum" placeholder="Type in a number"> <sup> 2 </sup> =
             <label id="squareresult"> ? </label>
+            <script>
+                function calculatesquare() {
+                    const nE = document.getElementById("squarenum")[0];
+                    var n = parseInt(nE.value);
+                    var r = n * n;
+                    document.getElementById("squareresult").innerHTML = r;
+                    nE.addEventListener('blur', calculatesquare, false)
+                    console.log(nE);
+                }</script>
 
         </div>
 
@@ -161,13 +191,13 @@
             <h1> Difference between textcontent and innerHTML</h1>
             <p> HTML Try it Editor </p>
             <p>ENTER your code </p>
-            <textarea cols="40" rows="20" id="code">  
+            <textarea cols="40" rows="20" id="code">
 
             </textarea>
 
-            <input type="button" id="tryit" value="Click and Display"> 
+            <input type="button" id="tryit" value="Click and Display">
 
-            <div id="innerHTMLmessage"> 
+            <div id="innerHTMLmessage">
             </div>
 
 
@@ -180,12 +210,14 @@
                 <select id="year">
                     <option> 2003</option>
                     <option> 2004</option>
-                </select>.</p>
+                </select>.
+            </p>
             <p>Please enter the condition of the car
                 <select id="condition">
                     <option> Fair</option>
                     <option> Good</option>
-                </select>.</p>
+                </select>.
+            </p>
 
             <p id="price">
 
@@ -330,9 +362,9 @@
             <div class="img-container-hide">
                 <img src="img/usca5.jpg" alt="usca">
             </div>
-			<script>
-				
-			</script>
+            <script>
+
+            </script>
 
 
         </div>
@@ -374,10 +406,10 @@
 
 
         <div class="practice">
-            <h1>  HTML Canvas </h1>
+            <h1> HTML Canvas </h1>
             <canvas id="myCanvas" width="200" height="100" style="border:1px solid #000000;">
-                    Your browser does not support the HTML5 canvas tag.</canvas>
-            <div id="drawing">  </div>
+                Your browser does not support the HTML5 canvas tag.</canvas>
+            <div id="drawing"> </div>
             <p> Some P5.js examples </p>
             <script src="https://cdn.jsdelivr.net/npm/p5@1/lib/p5.min.js"></script>
             <script src="js/draw.js"></script>
