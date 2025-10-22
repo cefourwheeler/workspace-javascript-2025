@@ -224,7 +224,7 @@
             </p>
 
             <script type="text/javascript">
-
+                
 
 
             </script>
@@ -233,10 +233,36 @@
 
         <div class="practice">
             <h1> Decision Statement - Switch</h1>
-            <p> Choose your favorite theme(warm, cool, hot)
+            <p> Choose your favorite theme(warm, cool, hot, cold, neutral):
                 <input type="text" id="theme">
             </p>
-
+            <script>
+                function changeTheme(){
+                    
+                    var choice=document.getElementById("theme").value;
+                    switch(choice){
+                        case"warm":
+                            document.body.style.backgroundColor="yellow";
+                            break;
+                        case"cool":
+                            document.body.style.backgroundColor="blue";
+                            break;
+                        case"hot":
+                            document.body.style.backgroundColor="red";
+                            break;
+                        case"cold":
+                            document.body.style.backgroundColor="lightblue";
+                            break;
+                        case "neutral":
+                            document.body.style.backgroundColor="gray";
+                            break;
+                        default:
+                            document.body.style.backgroundColor="white";
+                    }
+                }
+                const theme=document.getElementById("theme");
+                theme.addEventListener('blur', changeTheme, false);
+                </script>
         </div>
 
 
@@ -260,11 +286,34 @@
 
             </p>
             <p>
-                <input type="button" value="Check Premium">
+                <input type="button" id="checkPremium" value="Check Premium">
             </p>
             <p id="premiumresult">
 
             </p>
+            <script> 
+            function getPremium(){
+                var index=document.getElementById("agegroup").selectedIndex;
+                var coverage=document.querySelector('input[name="coverage"]:checked').value;
+                console.log("index"+ typeof index +" coverage" +typeof coverage);
+
+                parseInt(coverage);
+
+                var base=10;
+                var agefactor=0;
+
+
+                switch(age){
+                    case 0:
+                            agefactor=.08;
+                        break;
+                    default:
+                        break;
+                }
+
+            }
+            document.getElementById("checkPremium").addEventListener("click", getPremium, false);
+            </script>
 
         </div>
 
@@ -278,6 +327,16 @@
             <p>
                 <input type="button" value="Click for Square">
             </p>
+            <script>
+            function getSquare(){
+                var N=parseInt(document.getElementById("inputnumber1").value);  
+                for (i=1; i<=N; i++){
+                    var square=i*i;
+                    document.write("<p> The square of " + i + " is " + square + "</p>");
+                }
+            }
+            document.querySelector("input[type='button']").addEventListener("click", getSquare, false);
+            </script>
 
         </div>
 
