@@ -177,13 +177,27 @@
             <label id="squareresult"> ? </label>
             <script>
                 function calculatesquare() {
-                    const nE = document.getElementById("squarenum")[0];
-                    var n = parseInt(nE.value);
-                    var r = n * n;
-                    document.getElementById("squareresult").innerHTML = r;
-                    nE.addEventListener('blur', calculatesquare, false)
-                    console.log(nE);
-                }</script>
+                    const nE = document.getElementById("squarenum");
+                    const resultEl = document.getElementById("squareresult");
+                    if (!nE || !resultEl) return;
+                    const n = parseFloat(nE.value);
+                    if (isNaN(n)) {
+                        resultEl.textContent = '?';
+                    } else {
+                        const r = n * n;
+                        resultEl.textContent = r;
+                    }
+                }
+
+                // attach event listeners
+                (function(){
+                    const input = document.getElementById('squarenum');
+                    if(!input) return;
+                    // update when the user leaves the field and also on input for immediate feedback
+                    input.addEventListener('blur', calculatesquare, false);
+                    input.addEventListener('input', calculatesquare, false);
+                })();
+            </script>
 
         </div>
 
@@ -195,10 +209,45 @@
 
             </textarea>
 
-            <input type="button" id="tryit" value="Click and Display">
+            <p>
+                <input type="button" id="renderHtml" value="Render (innerHTML)">
+                <input type="button" id="showText" value="Show as text (textContent)">
+            </p>
 
-            <div id="innerHTMLmessage">
+            <div id="innerHTMLmessage" style="border:1px solid #ccc; padding:8px; min-height:40px;">
             </div>
+
+            <script>
+                (function(){
+                    const textarea = document.getElementById('code');
+                    const renderBtn = document.getElementById('renderHtml');
+                    const textBtn = document.getElementById('showText');
+                    const out = document.getElementById('innerHTMLmessage');
+
+                    if(!textarea || !out) return;
+
+                    function renderInnerHTML(){
+                        const code = textarea.value || '';
+                        if(code.trim() === ''){
+                            out.textContent = 'Please enter some HTML or text to display.';
+                            return;
+                        }
+                        out.innerHTML = code;
+                    }
+
+                    function renderText(){
+                        const code = textarea.value || '';
+                        if(code.trim() === ''){
+                            out.textContent = 'Please enter some HTML or text to display.';
+                            return;
+                        }
+                        out.textContent = code;
+                    }
+
+                    if(renderBtn) renderBtn.addEventListener('click', renderInnerHTML, false);
+                    if(textBtn) textBtn.addEventListener('click', renderText, false);
+                })();
+            </script>
 
 
         </div>
@@ -224,9 +273,34 @@
             </p>
 
             <script type="text/javascript">
-                
+                (function(){
+                    const yearEl = document.getElementById('year');
+                    const condEl = document.getElementById('condition');
+                    const out = document.getElementById('price');
 
+                    if(!yearEl || !condEl || !out) return;
 
+                    function updatePrice(){
+                        const year = yearEl.value.trim();
+                        const condition = condEl.value.trim();
+                        let price = 0;
+
+                        if(year === '2003'){
+                            if(condition === 'Fair') price = 2500;
+                            else price = 3500; 
+                        } else if(year === '2004'){
+                            if(condition === 'Fair') price = 3000;
+                            else price = 4000; 
+                        }
+
+                        out.textContent = price ? ('Estimated price: $' + price.toLocaleString()) : 'Please select year and condition.';
+                    }
+
+                    yearEl.addEventListener('change', updatePrice, false);
+                    condEl.addEventListener('change', updatePrice, false);
+
+                    updatePrice();
+                })();
             </script>
 
         </div>
@@ -291,28 +365,17 @@
             <p id="premiumresult">
 
             </p>
-            <script> 
+            <script>
             function getPremium(){
-                var index=document.getElementById("agegroup").selectedIndex;
-                var coverage=document.querySelector('input[name="coverage"]:checked').value;
-                console.log("index"+ typeof index +" coverage" +typeof coverage);
-
-                parseInt(coverage);
-
-                var base=10;
-                var agefactor=0;
-
-
-                switch(age){
-                    case 0:
-                            agefactor=.08;
-                        break;
-                    default:
-                        break;
-                }
-
+                var i=document.getElementById('agegroup').selectedIndex;
+                var c=document.querySelector('input[name="coverage"]:checked');
+                if(!c){document.getElementById('premiumresult').textContent='Please select coverage';return}
+                var cov=Number(c.value);
+                var r=[0.08,0.09,0.11,0.17];
+                var prem=(cov/1000)*(r[i]||0);
+                document.getElementById('premiumresult').textContent='Estimated premium: $'+prem.toFixed(2);
             }
-            document.getElementById("checkPremium").addEventListener("click", getPremium, false);
+            document.getElementById('checkPremium').addEventListener('click',getPremium,false);
             </script>
 
         </div>
@@ -325,17 +388,19 @@
             <p> Display the square of numer 1... N </p>
             <p> N = <input type="number" min="1" max="10" id="inputnumber1"> </p>
             <p>
-                <input type="button" value="Click for Square">
+                <input type="button" id="squareBtn" value="Click for Square">
             </p>
+            <div id="squareOutput"></div>
             <script>
             function getSquare(){
-                var N=parseInt(document.getElementById("inputnumber1").value);  
-                for (i=1; i<=N; i++){
-                    var square=i*i;
-                    document.write("<p> The square of " + i + " is " + square + "</p>");
-                }
+                var N=parseInt(document.getElementById("inputnumber1").value,10);
+                var out=document.getElementById('squareOutput');
+                if(!N || N<1){ out.textContent='Please enter a number between 1 and 10'; return; }
+                var html='';
+                for (var i=1;i<=N;i++) html += '<p>The square of '+i+' is '+(i*i)+'</p>';
+                out.innerHTML = html;
             }
-            document.querySelector("input[type='button']").addEventListener("click", getSquare, false);
+            document.getElementById('squareBtn').addEventListener('click', getSquare, false);
             </script>
 
         </div>
