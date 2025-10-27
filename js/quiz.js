@@ -20,3 +20,25 @@ document.getElementById("T").textContent=num1 + " - " + num2 + " - " + num3 + " 
 
 var ans4= num1 - num2 + num3;
 document.getElementById("U").textContent=num1 + " - " + num2 + " + " + num3 + " = " + ans4;
+
+function changeStyle(event){
+    event.preventDefault();
+    var classname = this.getAttribute("class");
+    console.log(classname);
+    if(classname === "answer selected"){
+        this.setAttribute("class","answer");
+    } else {
+        this.setAttribute("class","answer selected");
+    }
+    console.log(this);
+    if(classname === "answer selected"){
+        this.children[0].children[0].checked = false;
+    }
+    else {
+        this.children[0].children[0].checked = true;
+    }
+    
+}
+for (var i = 0; i < 4; i++) {
+document.getElementsByClassName("answer")[i].addEventListener("click", changeStyle,false);
+}
