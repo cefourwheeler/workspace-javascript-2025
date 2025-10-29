@@ -518,6 +518,17 @@
                 var index = 3;
                 var imagelist = document.querySelectorAll('.img-container-hide');
                 imagelist[3].setAttribute("class", "img-container-show");
+
+                function changepic() {
+                    imagelist[index].setAttribute("class", "img-container-hide");
+                    index++;
+                    if (index >= imagelist.length) {
+                        index = 0;
+                    }
+                    imagelist[index].setAttribute("class", "img-container-show");
+                }
+
+                setInterval(changepic, 3000);
             </script>
 
 
