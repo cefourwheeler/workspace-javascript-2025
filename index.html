@@ -411,14 +411,32 @@
             <!--  Input number box -->
             <p> N = <input type="number" min="1" max="10" id="inputnumber2"> </p>
             <p>
-                <input type="button" value="Click for multiplication table">
+                <input type="button" id="multTableBtn" value="Click for multiplication table">
             </p>
 
             <!-- output section -->
-            <div id="loopoutput">
+            <div id="loopoutput"></div>
 
-
-            </div>
+            <script>
+                (function(){
+                    const btn = document.getElementById('multTableBtn');
+                    const out = document.getElementById('loopoutput');
+                    const input = document.getElementById('inputnumber2');
+                    if(!btn || !out || !input) return;
+                    btn.addEventListener('click', function(){
+                        const N = parseInt(input.value,10);
+                        if(isNaN(N) || N<1){ out.textContent='Please enter a number between 1 and 10'; return; }
+                        // build table for N from 1..10
+                        let html = '<h3>Multiplication table for ' + N + '</h3>';
+                        html += '<table border="1" cellpadding="4"><tbody>';
+                        for(let i=1;i<=10;i++){
+                            html += '<tr><td>' + N + ' x ' + i + '</td><td>' + (N*i) + '</td></tr>';
+                        }
+                        html += '</tbody></table>';
+                        out.innerHTML = html;
+                    }, false);
+                })();
+            </script>
 
         </div>
 
@@ -428,9 +446,29 @@
             <p> N = <input type="number" min="1" max="10" id="inputnumber3"> </p>
 
             <p>
-                <input type="button" value="Click for multiplication drill">
+                <input type="button" id="drillBtn" value="Click for multiplication drill">
             </p>
-            <script src="js\mathdrill.js">
+            <div id="drillOutput"></div>
+            <script>
+                (function(){
+                    const btn = document.getElementById('drillBtn');
+                    const out = document.getElementById('drillOutput');
+                    const input = document.getElementById('inputnumber3');
+                    if(!btn || !out || !input) return;
+                    btn.addEventListener('click', function(){
+                        const N = parseInt(input.value,10);
+                        if(isNaN(N) || N<1){ out.textContent='Please enter a number between 1 and 10'; return; }
+                        let html = '<h3>Math drill ('+N+' problems)</h3>';
+                        html += '<ol>';
+                        for(let i=0;i<N;i++){
+                            const a = Math.floor(Math.random()*10)+1;
+                            const b = Math.floor(Math.random()*10)+1;
+                            html += '<li>' + a + ' x ' + b + ' = <strong>' + (a*b) + '</strong></li>';
+                        }
+                        html += '</ol>';
+                        out.innerHTML = html;
+                    }, false);
+                })();
             </script>
         </div>
 
